@@ -1,0 +1,1 @@
+/home/fox/.vim/colors/olek.vim
