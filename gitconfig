@@ -1,0 +1,17 @@
+[user]
+	email = apohllo@o2.pl
+	name = Aleksander Smywinski-Pohl
+[alias]
+	br = branch -a
+	co = checkout
+	ci = commit
+	lg = log -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+	st = status
+        dc = diff --cached
+[color]
+	branch = auto
+	diff = auto
+	status = auto
