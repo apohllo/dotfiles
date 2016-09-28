@@ -19,3 +19,6 @@ then
 	mv ~/.tmux.conf ~/.tmux.conf.old
 fi
 ln -s `pwd`/tmux.conf ~/.tmux.conf
+
+echo 'Installing Git configuration'
+ln -s `pwd`/gitconfig ~/.gitconfig
