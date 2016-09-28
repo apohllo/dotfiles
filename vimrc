@@ -1,4 +1,4 @@
-call pathogen#infect()
+execute pathogen#infect()
 syntax on
 filetype plugin indent on
 "let g:slime_target = "tmux"
@@ -15,8 +15,11 @@ set laststatus=2
 set shiftwidth=2
 set autoindent
 set nocompatible
-set tw=80
+set tw=120
 set noswapfile
+set hlsearch
+set nobackup
+set shell=/bin/bash\ -i
 
 "set statusline=%{GitBranch()}
 
@@ -28,8 +31,10 @@ map _enu i\begin{enumerate}\item\end{enumerate}2kA
 map _ite i\begin{itemize}\item\end{itemize}2kA
 "cytat
 map _quo i\begin{quotation}\end{quotation}2kA
+"rownanie
+map _eq i\begin{equation}\end{equation}2kA
 "wykomentowanie linii
-map _cm :s/^/%
+map _cm :s/^/%/:noh
 "odkomentowanie linii
 map _ucm :s/^%//
 "obrazek wraz z opisem
@@ -58,6 +63,8 @@ set spellfile=/home/fox/.pl.iso8859-2.add
 map _en :set spell spelllang=en
 map _pl :set spell spelllang=pl
 
+"rails
+map _h2h :s/<\(\w\+\) \(.*\)>/%\1{\2}/:s/\(\w\+\)=\("[^"]\+"\)/\1: \2,/gf}hx
 
 "local help
 "helptags ~/.vim/doc
@@ -79,6 +86,17 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.py,*.js,*.rb,*.sass,*.css,*.haml :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.py,*.js,*.rb,*.sass,*.css,*.haml,*.tex,Rakefile,*.lua :call <SID>StripTrailingWhitespaces()
+
+let g:rsenseUseOmniFunc = 1
+let g:rsenseHome = expand('/home/fox/src/rsense')
+
+let g:neocomplcache_omni_patterns = {}
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+set lazyredraw
+
 colo olek
 map <c-t> :NERDTree<CR>
+map <c-s> :call RunNearestSpec()<CR>
+map <c-a> :call RunCurrentSpecFile()<CR>
